@@ -20,7 +20,6 @@ const AboutUs = () => {
           <h1 className="headtext__cormorant">{t.title}</h1>
           <img src={images.spoon} alt="about_spoon" className="spoon__img" />
           <p className="p__opensans">{t.content1}</p>
-          <button type="button" className="custom__button">{t.knowMore}</button>
         </div>
 
         <div className="app__aboutus-content_knife flex__center">
@@ -31,7 +30,6 @@ const AboutUs = () => {
           <h1 className="headtext__cormorant">{t.subtitle}</h1>
           <img src={images.spoon} alt="about_spoon" className="spoon__img" />
           <p className="p__opensans">{t.content2}</p>
-          <button type="button" className="custom__button">{t.knowMore}</button>
         </div>
       </div>
     </div>
