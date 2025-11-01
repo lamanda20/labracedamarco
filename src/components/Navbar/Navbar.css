@@ -133,13 +133,13 @@
     height: 100vh;
     background: var(--color-black);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
     z-index: 10000;
     animation: fadeIn 0.3s ease-in-out;
     overflow-y: auto;
-    padding: 100px 20px 40px 20px;
+    padding: 80px 20px 20px 20px;
     box-sizing: border-box;
 }
 
@@ -183,38 +183,33 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    max-width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
     width: 100%;
 }
 
 .app__navbar-smallscreen_links li {
     margin: 0;
     width: 100%;
-    max-width: 300px;
 }
 
 .app__navbar-smallscreen_links li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
+    display: block;
+    padding: 1rem 1.5rem;
     color: var(--color-golden);
-    font-size: 1.8rem;
-    text-align: center;
+    font-size: 1.5rem;
+    text-align: left;
     font-family: var(--font-base);
     text-decoration: none;
     transition: all 0.3s ease;
-    white-space: nowrap;
-    min-height: 50px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .app__navbar-smallscreen_links li a:hover {
     color: var(--color-white);
-    transform: scale(1.05);
+    background: rgba(220, 179, 88, 0.1);
 }
 
 @media screen and (min-width: 2000px) {
@@ -236,10 +231,6 @@
 @media screen and (max-width: 850px) {
     .app__navbar-logo {
         gap: 1rem;
-    }
-    
-    .app__navbar-smallscreen_overlay {
-        padding: 80px 20px 40px 20px;
     }
 }
 
@@ -269,21 +260,16 @@
     }
 
     .app__navbar-smallscreen_overlay {
-        padding: 80px 15px 30px 15px;
+        padding: 70px 15px 20px 15px;
     }
 
     .app__navbar-smallscreen_links {
-        gap: 1.2rem;
-    }
-
-    .app__navbar-smallscreen_links li {
-        max-width: 250px;
+        gap: 0.3rem;
     }
 
     .app__navbar-smallscreen_links li a {
-        font-size: 1.5rem;
-        padding: 0.9rem 1.5rem;
-        min-height: 45px;
+        font-size: 1.4rem;
+        padding: 0.9rem 1.2rem;
     }
 }
 
@@ -297,27 +283,26 @@
     }
 
     .app__navbar-smallscreen_overlay {
-        padding: 70px 10px 20px 10px;
+        padding: 65px 10px 15px 10px;
     }
 
     .app__navbar-smallscreen_links {
-        gap: 1rem;
-    }
-
-    .app__navbar-smallscreen_links li {
-        max-width: 200px;
+        gap: 0.2rem;
     }
 
     .app__navbar-smallscreen_links li a {
         font-size: 1.3rem;
-        padding: 0.8rem 1.2rem;
-        min-height: 40px;
+        padding: 0.8rem 1rem;
     }
 }
 
 @media screen and (max-width: 380px) {
+    .app__navbar-smallscreen_overlay {
+        padding: 60px 10px 15px 10px;
+    }
+
     .app__navbar-smallscreen_links li a {
         font-size: 1.2rem;
-        padding: 0.7rem 1rem;
+        padding: 0.7rem 0.8rem;
     }
 }
