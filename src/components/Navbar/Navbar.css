@@ -87,6 +87,10 @@
     display: none;
     position: relative;
     z-index: 1005;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .app__navbar-smallscreen_overlay {
@@ -112,6 +116,10 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .app__navbar-smallscreen_links {
@@ -129,8 +137,22 @@
     font-family: var(--font-base);
 }
 
+.app__navbar-smallscreen_links li a {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
 .app__navbar-smallscreen_links li:hover {
     color: var(--color-white);
+}
+
+.app__navbar-smallscreen_links li:active {
+    color: var(--color-white);
+    transform: scale(0.95);
 }
 
 @media screen and (min-width: 2000px) {

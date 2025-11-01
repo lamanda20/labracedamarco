@@ -46,6 +46,18 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleMenuOpen = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setToggleMenu(true);
+  };
+
+  const handleMenuClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setToggleMenu(false);
+  };
+
   return (
     <nav className={`app__navbar ${scrolled ? 'scrolled' : ''} ${toggleMenu ? 'menu-open' : ''}`}>
       <div className="app__navbar-logo">
@@ -78,16 +90,48 @@ const Navbar = () => {
         <div />
       </div>
       <div className="app__navbar-smallscreen">
-        <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
+        <GiHamburgerMenu
+          color="#fff"
+          fontSize={27}
+          onClick={handleMenuOpen}
+          onTouchStart={handleMenuOpen}
+          style={{ cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}
+        />
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center">
-            <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
+            <MdOutlineRestaurantMenu
+              fontSize={27}
+              className="overlay__close"
+              onClick={handleMenuClose}
+              onTouchStart={handleMenuClose}
+              style={{ WebkitTapHighlightColor: 'transparent' }}
+            />
             <ul className="app__navbar-smallscreen_links">
-              <li><a href="#home" onClick={() => setToggleMenu(false)}>{t.home}</a></li>
-              <li><a href="#about" onClick={() => setToggleMenu(false)}>{t.about}</a></li>
-              <li><a href="#menu" onClick={() => setToggleMenu(false)}>{t.menu}</a></li>
-              <li><a href="#awards" onClick={() => setToggleMenu(false)}>{t.awards}</a></li>
-              <li><a href="#contact" onClick={() => setToggleMenu(false)}>{t.contact}</a></li>
+              <li>
+                <a href="#home" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                  {t.home}
+                </a>
+              </li>
+              <li>
+                <a href="#about" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                  {t.about}
+                </a>
+              </li>
+              <li>
+                <a href="#menu" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                  {t.menu}
+                </a>
+              </li>
+              <li>
+                <a href="#awards" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                  {t.awards}
+                </a>
+              </li>
+              <li>
+                <a href="#contact" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                  {t.contact}
+                </a>
+              </li>
               <li style={{ marginTop: '1rem' }}><LanguageSelector /></li>
             </ul>
           </div>
