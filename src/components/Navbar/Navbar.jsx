@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import images from '../../constants/images';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -11,7 +10,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = React.useState(false);
   const { language } = useLanguage();
   const t = translations[language].nav;
-  const history = useHistory();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -25,31 +23,36 @@ const Navbar = () => {
 
   React.useEffect(() => {
     if (toggleMenu) {
-      document.body.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
+      document.body.style.position = 'relative';
     } else {
-      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.body.style.position = '';
     }
 
     return () => {
-      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.body.style.position = '';
     };
   }, [toggleMenu]);
 
   const handleLogoClick = () => {
-    history.push('/');
+    window.location.href = '/';
     window.scrollTo(0, 0);
   };
 
-  const handleMenuOpen = () => {
-    setToggleMenu(true);
-  };
-
-  const handleMenuClose = () => {
-    setToggleMenu(false);
+  const handleMenuToggle = () => {
+    setToggleMenu((prev) => !prev);
   };
 
   const handleLinkClick = () => {
-    setToggleMenu(false);
+    // Petit délai pour permettre la navigation avant de fermer
+    setTimeout(() => {
+      setToggleMenu(false);
+    }, 100);
   };
 
   return (
@@ -86,19 +89,27 @@ const Navbar = () => {
       <div className="app__navbar-smallscreen">
         <button
           className="hamburger-menu"
-          onClick={handleMenuOpen}
+          onClick={handleMenuToggle}
           type="button"
-          aria-label="Ouvrir le menu"
+          aria-label={toggleMenu ? 'Fermer le menu' : 'Ouvrir le menu'}
         >
           <span />
           <span />
           <span />
         </button>
         {toggleMenu && (
-          <div className="app__navbar-smallscreen_overlay">
+          <div
+            className="app__navbar-smallscreen_overlay"
+            onClick={(e) => {
+              // Fermer si on clique sur l'overlay lui-même
+              if (e.target.classList.contains('app__navbar-smallscreen_overlay')) {
+                setToggleMenu(false);
+              }
+            }}
+          >
             <button
               className="menu-close-btn"
-              onClick={handleMenuClose}
+              onClick={() => setToggleMenu(false)}
               type="button"
               aria-label="Fermer le menu"
             >
@@ -130,7 +141,9 @@ const Navbar = () => {
                   {t.contact}
                 </a>
               </li>
-              <li style={{ marginTop: '1rem' }}><LanguageSelector /></li>
+              <li style={{ marginTop: '1rem' }}>
+                <LanguageSelector />
+              </li>
             </ul>
           </div>
         )}
