@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import images from '../../constants/images';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -93,54 +94,57 @@ const Navbar = () => {
           <span />
           <span />
         </button>
-        {toggleMenu && (
-          <div
-            className="app__navbar-smallscreen_overlay"
-            onClick={(e) => {
-              if (e.target.classList.contains('app__navbar-smallscreen_overlay')) {
-                setToggleMenu(false);
-              }
-            }}
-          >
-            <button
-              className="menu-close-btn"
-              onClick={() => setToggleMenu(false)}
-              type="button"
-              aria-label="Fermer le menu"
+        {toggleMenu && createPortal(
+          (
+            <div
+              className="app__navbar-smallscreen_overlay"
+              onClick={(e) => {
+                if (e.target.classList.contains('app__navbar-smallscreen_overlay')) {
+                  setToggleMenu(false);
+                }
+              }}
             >
-              ✕
-            </button>
-            <ul className="app__navbar-smallscreen_links">
-              <li>
-                <a href="#home" onClick={handleLinkClick}>
-                  {t.home}
-                </a>
-              </li>
-              <li>
-                <a href="#about" onClick={handleLinkClick}>
-                  {t.about}
-                </a>
-              </li>
-              <li>
-                <a href="#menu" onClick={handleLinkClick}>
-                  {t.menu}
-                </a>
-              </li>
-              <li>
-                <a href="#awards" onClick={handleLinkClick}>
-                  {t.awards}
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={handleLinkClick}>
-                  {t.contact}
-                </a>
-              </li>
-              <li style={{ marginTop: '1rem' }}>
-                <LanguageSelector />
-              </li>
-            </ul>
-          </div>
+              <button
+                className="menu-close-btn"
+                onClick={() => setToggleMenu(false)}
+                type="button"
+                aria-label="Fermer le menu"
+              >
+                ✕
+              </button>
+              <ul className="app__navbar-smallscreen_links">
+                <li>
+                  <a href="#home" onClick={handleLinkClick}>
+                    {t.home}
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" onClick={handleLinkClick}>
+                    {t.about}
+                  </a>
+                </li>
+                <li>
+                  <a href="#menu" onClick={handleLinkClick}>
+                    {t.menu}
+                  </a>
+                </li>
+                <li>
+                  <a href="#awards" onClick={handleLinkClick}>
+                    {t.awards}
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" onClick={handleLinkClick}>
+                    {t.contact}
+                  </a>
+                </li>
+                <li style={{ marginTop: '1rem' }}>
+                  <LanguageSelector />
+                </li>
+              </ul>
+            </div>
+          ),
+          document.body,
         )}
       </div>
     </nav>
