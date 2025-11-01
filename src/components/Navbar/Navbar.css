@@ -87,10 +87,31 @@
     display: none;
     position: relative;
     z-index: 1005;
+}
+
+.menu-toggle-btn {
+    background: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-base);
+    letter-spacing: 0.1em;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.menu-toggle-btn:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+    transform: scale(1.05);
+}
+
+.menu-toggle-btn:active {
+    transform: scale(0.98);
 }
 
 .app__navbar-smallscreen_overlay {
@@ -101,25 +122,57 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: var(--color-black);
+    background: linear-gradient(135deg, rgba(220, 179, 94, 0.95) 0%, rgba(12, 12, 12, 0.98) 50%, rgba(220, 179, 94, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.app__navbar-smallscreen_overlay .overlay__close {
-    font-size: 27px;
-    color: var(--color-golden);
-    cursor: pointer;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.menu-close-btn {
     position: absolute;
     top: 20px;
     right: 20px;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu-close-btn:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 20px rgba(220, 179, 94, 0.4);
+}
+
+.menu-close-btn:active {
+    transform: rotate(90deg) scale(0.95);
 }
 
 .app__navbar-smallscreen_links {
@@ -129,30 +182,39 @@
 }
 
 .app__navbar-smallscreen_links li {
-    margin: 2rem;
+    margin: 1rem 0;
     cursor: pointer;
-    color: var(--color-golden);
-    font-size: 2rem;
-    text-align: center;
-    font-family: var(--font-base);
 }
 
 .app__navbar-smallscreen_links li a {
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem;
+    color: var(--color-white);
+    font-size: 1.8rem;
+    text-align: center;
+    font-family: var(--font-base);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.app__navbar-smallscreen_links li:hover {
-    color: var(--color-white);
+.app__navbar-smallscreen_links li a:hover {
+    color: var(--color-black);
+    border-color: var(--color-white);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 179, 94, 0.4);
 }
 
-.app__navbar-smallscreen_links li:active {
-    color: var(--color-white);
-    transform: scale(0.95);
+.app__navbar-smallscreen_links li a:active {
+    transform: translateY(-1px) scale(0.98);
+    background: var(--color-white);
 }
 
 @media screen and (min-width: 2000px) {
@@ -177,6 +239,18 @@
     }
 }
 
+@media screen and (max-width: 850px) {
+    .menu-toggle-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .app__navbar-smallscreen_links li a {
+        font-size: 1.6rem;
+        min-width: 180px;
+    }
+}
+
 @media screen and (max-width: 650px) {
     .app__navbar {
         padding: 1rem;
@@ -192,5 +266,50 @@
 
     .app__navbar-logo img {
         width: 110px;
+    }
+
+    .menu-toggle-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+    }
+
+    .menu-close-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.8rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .app__navbar-smallscreen_links li a {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        min-width: 160px;
+    }
+
+    .app__navbar-smallscreen_links li {
+        margin: 0.8rem 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .menu-toggle-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .menu-close-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
+        top: 10px;
+        right: 10px;
+    }
+
+    .app__navbar-smallscreen_links li a {
+        font-size: 1.3rem;
+        padding: 0.7rem 1.2rem;
+        min-width: 140px;
     }
 }

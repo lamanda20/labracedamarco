@@ -1,6 +1,4 @@
 import React from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import images from '../../constants/images';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -90,45 +88,47 @@ const Navbar = () => {
         <div />
       </div>
       <div className="app__navbar-smallscreen">
-        <GiHamburgerMenu
-          color="#fff"
-          fontSize={27}
+        <button
+          className="menu-toggle-btn"
           onClick={handleMenuOpen}
-          onTouchStart={handleMenuOpen}
-          style={{ cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}
-        />
+          type="button"
+          aria-label="Ouvrir le menu"
+        >
+          MENU
+        </button>
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center">
-            <MdOutlineRestaurantMenu
-              fontSize={27}
-              className="overlay__close"
+            <button
+              className="menu-close-btn"
               onClick={handleMenuClose}
-              onTouchStart={handleMenuClose}
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            />
+              type="button"
+              aria-label="Fermer le menu"
+            >
+              ✕
+            </button>
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                <a href="#home" onClick={handleMenuClose}>
                   {t.home}
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                <a href="#about" onClick={handleMenuClose}>
                   {t.about}
                 </a>
               </li>
               <li>
-                <a href="#menu" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                <a href="#menu" onClick={handleMenuClose}>
                   {t.menu}
                 </a>
               </li>
               <li>
-                <a href="#awards" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                <a href="#awards" onClick={handleMenuClose}>
                   {t.awards}
                 </a>
               </li>
               <li>
-                <a href="#contact" onClick={handleMenuClose} onTouchStart={handleMenuClose}>
+                <a href="#contact" onClick={handleMenuClose}>
                   {t.contact}
                 </a>
               </li>
