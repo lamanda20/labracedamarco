@@ -24,7 +24,7 @@
 }
 
 .app__navbar.menu-open {
-    z-index: 10001;
+    z-index: 9999;
 }
 
 .app__navbar.scrolled .app__navbar-logo img {
@@ -86,7 +86,7 @@
 .app__navbar-smallscreen {
     display: none;
     position: relative;
-    z-index: 1005;
+    z-index: 10000;
 }
 
 .hamburger-menu {
@@ -105,7 +105,7 @@
     -webkit-appearance: none;
     appearance: none;
     position: relative;
-    z-index: 10002;
+    z-index: 10001;
 }
 
 .hamburger-menu:focus {
@@ -136,7 +136,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    z-index: 99999;
+    z-index: 9998;
     animation: fadeIn 0.3s ease-in-out;
     overflow-y: auto;
     overflow-x: hidden;
@@ -169,7 +169,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10001;
+    z-index: 10002;
     line-height: 1;
 }
 
