@@ -44,14 +44,10 @@ a {
   0% {
     -webkit-transform: translateY(-25%);
             transform: translateY(-25%);
-    opacity: 0;
-    background: var(--color-black);
   }
   100% {
     -webkit-transform: translateY(0);
             transform: translateY(0);
-    opacity: 1;
-    background: var(--color-black);
   }
 }
 
@@ -59,14 +55,10 @@ a {
   0% {
     -webkit-transform: translateY(-25%);
             transform: translateY(-25%);
-    opacity: 0;
-    background: var(--color-black);
   }
   100% {
     -webkit-transform: translateY(0);
             transform: translateY(0);
-    opacity: 1;
-    background: var(--color-black);
   }
 }
 

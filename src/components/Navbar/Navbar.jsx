@@ -11,7 +11,6 @@ import './Navbar.css';
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [scrollPosition, setScrollPosition] = React.useState(0);
   const { language } = useLanguage();
   const t = translations[language].nav;
   const history = useHistory();
@@ -27,55 +26,20 @@ const Navbar = () => {
   }, []);
 
   React.useEffect(() => {
-    const preventScroll = (e) => {
-      e.preventDefault();
-    };
-
     if (toggleMenu) {
-      const currentScroll = window.pageYOffset;
-      setScrollPosition(currentScroll);
-
-      document.documentElement.classList.add('body-no-scroll');
-      document.body.classList.add('body-no-scroll');
-      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${currentScroll}px`;
       document.body.style.width = '100%';
-      document.body.style.height = '100%';
-
-      document.body.addEventListener('touchmove', preventScroll, { passive: false });
-      document.body.addEventListener('scroll', preventScroll, { passive: false });
+      document.body.style.top = `-${window.scrollY}px`;
     } else {
-      document.documentElement.classList.remove('body-no-scroll');
-      document.body.classList.remove('body-no-scroll');
-      document.documentElement.style.overflow = '';
+      const scrollY = document.body.style.top;
       document.body.style.overflow = '';
       document.body.style.position = '';
-      document.body.style.top = '';
       document.body.style.width = '';
-      document.body.style.height = '';
-
-      document.body.removeEventListener('touchmove', preventScroll);
-      document.body.removeEventListener('scroll', preventScroll);
-
-      window.scrollTo(0, scrollPosition);
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     }
-
-    return () => {
-      document.documentElement.classList.remove('body-no-scroll');
-      document.body.classList.remove('body-no-scroll');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-
-      document.body.removeEventListener('touchmove', preventScroll);
-      document.body.removeEventListener('scroll', preventScroll);
-    };
-  }, [toggleMenu, scrollPosition]);
+  }, [toggleMenu]);
 
   const handleLogoClick = () => {
     history.push('/');

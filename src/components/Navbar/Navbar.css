@@ -1,14 +1,3 @@
-/* Bloque le défilement de la page quand le menu mobile est ouvert */
-/* Cible <html> ET <body> lorsqu'ils ont la classe
-   et utilise !important pour forcer la priorité */
-html.body-no-scroll,
-body.body-no-scroll {
-    overflow: hidden !important;
-    position: fixed !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
 .app__navbar {
     position: fixed;
     top: 0;
@@ -104,30 +93,16 @@ body.body-no-scroll {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
     background: var(--color-black);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-    overflow: hidden;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .app__navbar-smallscreen_overlay .overlay__close {
@@ -137,65 +112,21 @@ body.body-no-scroll {
     position: absolute;
     top: 20px;
     right: 20px;
-    transition: all 0.3s ease;
-    animation: rotateIn 0.4s ease-out 0.2s both;
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-90deg) scale(0.5);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-}
-
-.app__navbar-smallscreen_overlay .overlay__close:hover {
-    transform: rotate(90deg) scale(1.2);
-    color: var(--color-white);
 }
 
 .app__navbar-smallscreen_links {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    overflow: hidden;
-    max-height: none;
-    animation: slideUp 0.4s ease-out 0.1s both;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .app__navbar-smallscreen_links li {
-    margin: 0;
-    padding: 1rem;
+    margin: 2rem;
     cursor: pointer;
     color: var(--color-golden);
     font-size: 2rem;
     text-align: center;
     font-family: var(--font-base);
-    transition: all 0.3s ease;
-}
-
-.app__navbar-smallscreen_links li:hover {
-    transform: scale(1.1);
-    color: var(--color-white);
 }
 
 .app__navbar-smallscreen_links li:hover {
