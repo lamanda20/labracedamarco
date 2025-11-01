@@ -23,24 +23,21 @@ const Navbar = () => {
 
   React.useEffect(() => {
     if (toggleMenu) {
+      document.body.classList.add('menu-mobile-open');
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
       document.body.style.height = '100vh';
-      document.body.style.position = 'relative';
     } else {
+      document.body.classList.remove('menu-mobile-open');
       document.body.style.overflow = '';
-      document.body.style.height = '';
       document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
     }
-
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.body.style.position = '';
-    };
   }, [toggleMenu]);
 
   const handleLogoClick = () => {
-    window.location.href = '/';
     window.scrollTo(0, 0);
   };
 
@@ -49,7 +46,6 @@ const Navbar = () => {
   };
 
   const handleLinkClick = () => {
-    // Petit délai pour permettre la navigation avant de fermer
     setTimeout(() => {
       setToggleMenu(false);
     }, 100);
@@ -101,7 +97,6 @@ const Navbar = () => {
           <div
             className="app__navbar-smallscreen_overlay"
             onClick={(e) => {
-              // Fermer si on clique sur l'overlay lui-même
               if (e.target.classList.contains('app__navbar-smallscreen_overlay')) {
                 setToggleMenu(false);
               }

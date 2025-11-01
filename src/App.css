@@ -259,12 +259,17 @@ body {
   }
 }
 
-/* Fix: force containers to use body scroll, avoid internal 100vh scroll containers */
+/* Fix: force containers to use body scroll - MODIFIÉ pour ne pas affecter le menu mobile */
 .app__bg,
 .app__wrapper,
-.section__padding,
-#root {
+.section__padding {
   height: auto !important;
   overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+/* #root n'a plus overflow-y: visible pour permettre au menu mobile de fonctionner */
+#root {
+  height: auto !important;
   overflow-x: hidden !important;
 }
