@@ -19,6 +19,7 @@
 
 .app__menuitem-name {
     flex: 1;
+    max-width: 70%;
 }
 
 .app__menuitem-dash {
@@ -26,10 +27,110 @@
     height: 1px;
     background: var(--color-golden);
     margin: 0 1rem;
+    flex-shrink: 0;
 }
 
 .app__menuitem-price {
-    display: flex;
+    display: flex !important;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
+    white-space: nowrap;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.app__menuitem-price p {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+}
+
+.app__menuitem-price .p__cormorant {
+    color: #FFFFFF !important;
+}
+
+/* Desktop and large screens */
+@media screen and (min-width: 1150px) {
+    .app__menuitem-price {
+        min-width: 100px;
+    }
+
+    .app__menuitem-price p {
+        font-size: 20px !important;
+        line-height: 30px !important;
+    }
+
+    .app__menuitem-dash {
+        width: 120px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .app__menuitem {
+        margin: 0.8rem 0;
+    }
+
+    .app__menuitem-dash {
+        width: 50px;
+        margin: 0 0.5rem;
+    }
+
+    .app__menuitem-name {
+        font-size: 14px;
+    }
+
+    .app__menuitem-name p {
+        font-size: 14px;
+    }
+
+    .app__menuitem-price {
+        font-size: 14px;
+        display: flex;
+    }
+
+    .app__menuitem-price p {
+        font-size: 14px;
+        display: block;
+    }
+
+    .app__menuitem-sub {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .app__menuitem {
+        margin: 0.5rem 0;
+    }
+
+    .app__menuitem-dash {
+        width: 30px;
+        margin: 0 0.3rem;
+    }
+
+    .app__menuitem-name {
+        font-size: 13px;
+    }
+
+    .app__menuitem-name p {
+        font-size: 13px;
+    }
+
+    .app__menuitem-price {
+        font-size: 13px;
+        display: flex;
+    }
+
+    .app__menuitem-price p {
+        font-size: 13px;
+        display: block;
+    }
+
+    .app__menuitem-sub {
+        font-size: 11px;
+        line-height: 16px;
+    }
 }

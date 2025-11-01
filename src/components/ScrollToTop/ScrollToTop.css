@@ -1,0 +1,79 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.scroll-to-top__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: var(--color-golden);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.scroll-to-top__button:hover {
+  background: var(--color-white);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-to-top__button svg {
+  color: var(--color-black);
+  font-size: 24px;
+}
+
+.scroll-to-top__button:hover svg {
+  color: var(--color-golden);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .scroll-to-top__button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .scroll-to-top__button svg {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .scroll-to-top {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .scroll-to-top__button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-to-top__button svg {
+    font-size: 18px;
+  }
+}

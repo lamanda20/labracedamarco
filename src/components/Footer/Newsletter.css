@@ -4,6 +4,12 @@
     background: var(--color-black);
 }
 
+/* Prevent Newsletter from becoming an internal scroll container */
+.app__newsletter {
+    height: auto !important;
+    overflow-y: visible !important;
+}
+
 .app__newsletter-heading {
     text-align: center;
 }
@@ -30,34 +36,15 @@
     width: max-content;
 }
 
-@media screen and (min-width: 2000px) {
-    .app__newsletter-input input {
-        font-size: 2rem;
-    }
-}
-
 @media screen and (max-width: 990px) {
     .app__newsletter-input {
         flex-direction: column;
-        width: 100%;
-    }
-
-    .app__newsletter-input input {
-        margin: 0 0 2rem 0;
-        width: 100%;
     }
 }
 
 @media screen and (max-width: 650px) {
     .app__newsletter {
-        padding: 2rem 0;
+        padding: 1.5rem 1rem;
         border: none;
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .app__newsletter-heading h1 {
-        font-size: 32px;
-        line-height: 50px;
     }
 }

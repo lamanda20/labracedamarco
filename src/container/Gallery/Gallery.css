@@ -1,8 +1,14 @@
 .app__gallery {
     flex-direction: row;
-
     background: var(--color-black);
     padding: 4rem 0 4rem 6rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .app__gallery-content {
@@ -26,6 +32,7 @@
     flex-direction: row;
     max-width: 50%;
     position: relative;
+    overflow: hidden;
 }
 
 .app__gallery-images_container {
@@ -34,7 +41,8 @@
     width: max-content;
     overflow-x: scroll;
     -ms-overflow-style: none;
-    scrollbar-width: none;  
+    scrollbar-width: none;
+    scroll-behavior: smooth;
 }
 
 .app__gallery-images_container::-webkit-scrollbar {
@@ -46,6 +54,8 @@
     min-width: 301px;
     height: 447px;
     margin-right: 2rem;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .gallery__image-icon {
@@ -53,24 +63,25 @@
     color: #fff;
     font-size: 2rem;
     opacity: 0;
-    transition: .5s ease;
+    transition: opacity 0.5s ease;
     cursor: pointer;
+    z-index: 2;
 }
 
 .app__gallery-images_card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1;
-    transition: .5s ease;
+    transition: transform 0.5s ease, filter 0.3s ease;
 }
 
 .app__gallery-images_card:hover img {
-    opacity: .35;
+    transform: scale(1.15);
+    filter: brightness(1.1);
 }
 
 .app__gallery-images_card:hover .gallery__image-icon {
-    opacity: 1;
+    opacity: 0;
 }
 
 .app__gallery-images_arrows {
@@ -131,15 +142,58 @@
 
 @media screen and (max-width: 650px) {
     .app__gallery {
-        padding: 4rem 0 4rem 2rem;
+        padding: 3rem 0 3rem 1.5rem;
     }  
     
     .app__gallery-content {
         min-width: 100%;
+        padding-right: 1.5rem;
     }
 
     .app__gallery-images_card {
         min-width: 240px;
         height: 320px;
+        margin-right: 1rem;
+    }
+
+    .gallery__image-icon {
+        font-size: 1.5rem;
+    }
+
+    .gallery__arrow-icon {
+        font-size: 1.5rem;
+    }
+
+    .app__gallery-images {
+        margin: 3rem 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .app__gallery {
+        padding: 2rem 0 2rem 1rem;
+    }
+
+    .app__gallery-content {
+        padding-right: 1rem;
+    }
+
+    .app__gallery-images_card {
+        min-width: 200px;
+        height: 280px;
+        margin-right: 0.8rem;
+    }
+
+    .gallery__image-icon {
+        font-size: 1.2rem;
+    }
+
+    .gallery__arrow-icon {
+        font-size: 1.3rem;
+        padding: 0.2rem;
+    }
+
+    .app__gallery-images {
+        margin: 2rem 0;
     }
 }

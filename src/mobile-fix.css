@@ -1,0 +1,72 @@
+/* Mobile Fix - Force no horizontal scroll */
+@media screen and (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Force all sections to respect viewport width */
+  * {
+    max-width: 100vw;
+  }
+
+  /* Prevent images from causing overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ensure all containers respect viewport */
+  div,
+  section,
+  article,
+  main,
+  aside,
+  header,
+  footer,
+  nav {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  /* Fix for text overflow */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  /* Fix for buttons */
+  button {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Fix for inputs */
+  input,
+  textarea,
+  select {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

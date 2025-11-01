@@ -1,12 +1,18 @@
 import React from 'react';
 import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
+import { useHistory } from 'react-router-dom';
 
 import { SubHeading } from '../../components';
 import { images } from '../../constants';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { translations } from '../../translations/translations';
 import './Gallery.css';
 
 const Gallery = () => {
   const scrollRef = React.useRef(null);
+  const { language } = useLanguage();
+  const t = translations[language].gallery;
+  const history = useHistory();
 
   const scroll = (direction) => {
     const { current } = scrollRef;
@@ -18,13 +24,16 @@ const Gallery = () => {
     }
   };
 
+  const handleViewMore = () => {
+    history.push('/gallery');
+  };
+
   return (
     <div className="app__gallery flex__center">
       <div className="app__gallery-content">
-        <SubHeading title="Instagram" />
-        <h1 className="headtext__cormorant">Photo Gallery</h1>
-        <p className="p__opensans" style={{ color: '#AAAAAA', marginTop: '2rem' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat mattis ipsum turpis elit elit scelerisque egestas mu.</p>
-        <button type="button" className="custom__button">View More</button>
+        <SubHeading title={t.subtitle} />
+        <h1 className="headtext__cormorant">{t.title}</h1>
+        <button type="button" className="custom__button" style={{ marginTop: '2rem' }} onClick={handleViewMore}>{t.button}</button>
       </div>
       <div className="app__gallery-images">
         <div className="app__gallery-images_container" ref={scrollRef}>

@@ -1,0 +1,94 @@
+.language-selector {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--color-golden);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+  font-family: var(--font-base);
+  white-space: nowrap;
+}
+
+.language-btn .flag {
+  font-size: 1.2rem;
+}
+
+.language-btn .lang-code {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.language-btn:hover {
+  background: var(--color-golden);
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+.language-btn.active {
+  background: var(--color-golden);
+  color: var(--color-black);
+  box-shadow: 0 2px 8px rgba(220, 202, 135, 0.3);
+}
+
+@media screen and (max-width: 1150px) {
+  .language-btn .lang-code {
+    display: none;
+  }
+
+  .language-btn {
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .language-btn .lang-code {
+    display: none;
+  }
+
+  .language-btn {
+    padding: 0.35rem 0.45rem;
+  }
+
+  .language-btn .flag {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .language-selector {
+    gap: 0.25rem;
+  }
+
+  .language-btn {
+    padding: 0.3rem 0.4rem;
+    border-width: 1px;
+  }
+
+  .language-btn .flag {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .language-selector {
+    gap: 0.2rem;
+  }
+
+  .language-btn {
+    padding: 0.25rem 0.35rem;
+  }
+
+  .language-btn .flag {
+    font-size: 0.95rem;
+  }
+}
