@@ -25,18 +25,14 @@ const Navbar = () => {
 
   React.useEffect(() => {
     if (toggleMenu) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.top = `-${window.scrollY}px`;
+      document.body.classList.add('menu-open');
     } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      document.body.classList.remove('menu-open');
     }
+
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
   }, [toggleMenu]);
 
   const handleLogoClick = () => {
@@ -44,15 +40,15 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleMenuOpen = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMenuOpen = () => {
     setToggleMenu(true);
   };
 
-  const handleMenuClose = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMenuClose = () => {
+    setToggleMenu(false);
+  };
+
+  const handleLinkClick = () => {
     setToggleMenu(false);
   };
 
@@ -89,15 +85,17 @@ const Navbar = () => {
       </div>
       <div className="app__navbar-smallscreen">
         <button
-          className="menu-toggle-btn"
+          className="hamburger-menu"
           onClick={handleMenuOpen}
           type="button"
           aria-label="Ouvrir le menu"
         >
-          MENU
+          <span />
+          <span />
+          <span />
         </button>
         {toggleMenu && (
-          <div className="app__navbar-smallscreen_overlay flex__center">
+          <div className="app__navbar-smallscreen_overlay">
             <button
               className="menu-close-btn"
               onClick={handleMenuClose}
@@ -108,27 +106,27 @@ const Navbar = () => {
             </button>
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={handleMenuClose}>
+                <a href="#home" onClick={handleLinkClick}>
                   {t.home}
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={handleMenuClose}>
+                <a href="#about" onClick={handleLinkClick}>
                   {t.about}
                 </a>
               </li>
               <li>
-                <a href="#menu" onClick={handleMenuClose}>
+                <a href="#menu" onClick={handleLinkClick}>
                   {t.menu}
                 </a>
               </li>
               <li>
-                <a href="#awards" onClick={handleMenuClose}>
+                <a href="#awards" onClick={handleLinkClick}>
                   {t.awards}
                 </a>
               </li>
               <li>
-                <a href="#contact" onClick={handleMenuClose}>
+                <a href="#contact" onClick={handleLinkClick}>
                   {t.contact}
                 </a>
               </li>

@@ -1,3 +1,9 @@
+body.menu-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: relative !important;
+}
+
 .app__navbar {
     position: fixed;
     top: 0;
@@ -89,6 +95,40 @@
     z-index: 1005;
 }
 
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.hamburger-menu:focus {
+    outline: none;
+}
+
+.hamburger-menu span {
+    width: 100%;
+    height: 2.5px;
+    background: var(--color-white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.hamburger-menu:hover span {
+    background: var(--color-golden);
+}
+
 .menu-toggle-btn {
     background: transparent;
     color: var(--color-white);
@@ -118,19 +158,16 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(220, 179, 94, 0.95) 0%, rgba(12, 12, 12, 0.98) 50%, rgba(220, 179, 94, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--color-black);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 9999;
+    z-index: 10000;
     animation: fadeIn 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 @keyframes fadeIn {
@@ -146,33 +183,20 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid var(--color-white);
-    color: var(--color-white);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 2rem;
-    line-height: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-golden);
+    font-size: 2.5rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    width: auto;
+    height: auto;
 }
 
 .menu-close-btn:hover {
-    background: var(--color-white);
-    color: var(--color-black);
-    transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 6px 20px rgba(220, 179, 94, 0.4);
-}
-
-.menu-close-btn:active {
-    transform: rotate(90deg) scale(0.95);
+    color: var(--color-white);
+    transform: scale(1.2);
 }
 
 .app__navbar-smallscreen_links {
@@ -181,40 +205,37 @@
     margin: 0;
 }
 
+.app__navbar-smallscreen_links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 100%;
+}
+
 .app__navbar-smallscreen_links li {
-    margin: 1rem 0;
+    margin: 0;
     cursor: pointer;
 }
 
 .app__navbar-smallscreen_links li a {
     display: block;
     padding: 1rem 2rem;
-    color: var(--color-white);
+    color: var(--color-golden);
     font-size: 1.8rem;
     text-align: center;
     font-family: var(--font-base);
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    min-width: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
 }
 
 .app__navbar-smallscreen_links li a:hover {
-    color: var(--color-black);
-    border-color: var(--color-white);
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(220, 179, 94, 0.4);
-}
-
-.app__navbar-smallscreen_links li a:active {
-    transform: translateY(-1px) scale(0.98);
-    background: var(--color-white);
+    color: var(--color-white);
 }
 
 @media screen and (min-width: 2000px) {
