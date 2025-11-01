@@ -27,29 +27,53 @@ const Navbar = () => {
   }, []);
 
   React.useEffect(() => {
+    const preventScroll = (e) => {
+      e.preventDefault();
+    };
+
     if (toggleMenu) {
       const currentScroll = window.pageYOffset;
       setScrollPosition(currentScroll);
+
       document.documentElement.classList.add('body-no-scroll');
       document.body.classList.add('body-no-scroll');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.top = `-${currentScroll}px`;
       document.body.style.width = '100%';
+      document.body.style.height = '100%';
+
+      document.body.addEventListener('touchmove', preventScroll, { passive: false });
+      document.body.addEventListener('scroll', preventScroll, { passive: false });
     } else {
       document.documentElement.classList.remove('body-no-scroll');
       document.body.classList.remove('body-no-scroll');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
+      document.body.style.height = '';
+
+      document.body.removeEventListener('touchmove', preventScroll);
+      document.body.removeEventListener('scroll', preventScroll);
+
       window.scrollTo(0, scrollPosition);
     }
 
     return () => {
       document.documentElement.classList.remove('body-no-scroll');
       document.body.classList.remove('body-no-scroll');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
+      document.body.style.height = '';
+
+      document.body.removeEventListener('touchmove', preventScroll);
+      document.body.removeEventListener('scroll', preventScroll);
     };
   }, [toggleMenu, scrollPosition]);
 
@@ -92,7 +116,7 @@ const Navbar = () => {
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
         {toggleMenu && (
-          <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
+          <div className="app__navbar-smallscreen_overlay flex__center">
             <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
             <ul className="app__navbar-smallscreen_links">
               <li><a href="#home" onClick={() => setToggleMenu(false)}>{t.home}</a></li>
