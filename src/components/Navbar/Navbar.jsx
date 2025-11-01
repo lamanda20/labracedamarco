@@ -11,6 +11,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [scrollPosition, setScrollPosition] = React.useState(0);
   const { language } = useLanguage();
   const t = translations[language].nav;
   const history = useHistory();
@@ -25,13 +26,40 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    if (toggleMenu) {
+      const currentScroll = window.pageYOffset;
+      setScrollPosition(currentScroll);
+      document.documentElement.classList.add('body-no-scroll');
+      document.body.classList.add('body-no-scroll');
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${currentScroll}px`;
+      document.body.style.width = '100%';
+    } else {
+      document.documentElement.classList.remove('body-no-scroll');
+      document.body.classList.remove('body-no-scroll');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollPosition);
+    }
+
+    return () => {
+      document.documentElement.classList.remove('body-no-scroll');
+      document.body.classList.remove('body-no-scroll');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [toggleMenu, scrollPosition]);
+
   const handleLogoClick = () => {
     history.push('/');
     window.scrollTo(0, 0);
   };
 
   return (
-    <nav className={`app__navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`app__navbar ${scrolled ? 'scrolled' : ''} ${toggleMenu ? 'menu-open' : ''}`}>
       <div className="app__navbar-logo">
         <button
           type="button"
