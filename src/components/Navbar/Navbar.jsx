@@ -1,5 +1,6 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import images from '../../constants/images';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { translations } from '../../translations/translations';
@@ -22,34 +23,8 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  React.useEffect(() => {
-    if (toggleMenu) {
-      document.body.classList.add('menu-mobile-open');
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.height = '100vh';
-    } else {
-      document.body.classList.remove('menu-mobile-open');
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-    }
-  }, [toggleMenu]);
-
   const handleLogoClick = () => {
     window.scrollTo(0, 0);
-  };
-
-  const handleMenuToggle = () => {
-    setToggleMenu((prev) => !prev);
-  };
-
-  const handleLinkClick = () => {
-    setTimeout(() => {
-      setToggleMenu(false);
-    }, 100);
   };
 
   return (
@@ -84,67 +59,21 @@ const Navbar = () => {
         <div />
       </div>
       <div className="app__navbar-smallscreen">
-        <button
-          className="hamburger-menu"
-          onClick={handleMenuToggle}
-          type="button"
-          aria-label={toggleMenu ? 'Fermer le menu' : 'Ouvrir le menu'}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        {toggleMenu && createPortal(
-          (
-            <div
-              className="app__navbar-smallscreen_overlay"
-              onClick={(e) => {
-                if (e.target.classList.contains('app__navbar-smallscreen_overlay')) {
-                  setToggleMenu(false);
-                }
-              }}
-            >
-              <button
-                className="menu-close-btn"
-                onClick={() => setToggleMenu(false)}
-                type="button"
-                aria-label="Fermer le menu"
-              >
-                ✕
-              </button>
-              <ul className="app__navbar-smallscreen_links">
-                <li>
-                  <a href="#home" onClick={handleLinkClick}>
-                    {t.home}
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" onClick={handleLinkClick}>
-                    {t.about}
-                  </a>
-                </li>
-                <li>
-                  <a href="#menu" onClick={handleLinkClick}>
-                    {t.menu}
-                  </a>
-                </li>
-                <li>
-                  <a href="#awards" onClick={handleLinkClick}>
-                    {t.awards}
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" onClick={handleLinkClick}>
-                    {t.contact}
-                  </a>
-                </li>
-                <li style={{ marginTop: '1rem' }}>
-                  <LanguageSelector />
-                </li>
-              </ul>
-            </div>
-          ),
-          document.body,
+        <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
+        {toggleMenu && (
+          <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
+            <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
+            <ul className="app__navbar-smallscreen_links">
+              <li><a href="#home" onClick={() => setToggleMenu(false)}>{t.home}</a></li>
+              <li><a href="#about" onClick={() => setToggleMenu(false)}>{t.about}</a></li>
+              <li><a href="#menu" onClick={() => setToggleMenu(false)}>{t.menu}</a></li>
+              <li><a href="#awards" onClick={() => setToggleMenu(false)}>{t.awards}</a></li>
+              <li><a href="#contact" onClick={() => setToggleMenu(false)}>{t.contact}</a></li>
+              <li style={{ marginTop: '1rem' }}>
+                <LanguageSelector />
+              </li>
+            </ul>
+          </div>
         )}
       </div>
     </nav>
