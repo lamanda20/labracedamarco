@@ -83,7 +83,7 @@ const FullGallery = () => {
   const getCategoryName = (category) => {
     const categories = {
       antipasti: {
-        fr: 'Entrées',
+        fr: '',
         en: 'Appetizers',
         es: 'Entrantes',
         de: 'Vorspeisen',
@@ -91,7 +91,7 @@ const FullGallery = () => {
         pt: 'Entradas',
       },
       primi: {
-        fr: 'Premiers Plats',
+        fr: '',
         en: 'First Courses',
         es: 'Primeros Platos',
         de: 'Erste Gänge',

@@ -29,8 +29,8 @@ export const translations = {
       subtitle: 'Des saveurs qui éveillent vos sens',
       title: 'Notre Menu',
       categories: {
-        antipasti: { title: 'Entrées', subtitle: 'Spécialités' },
-        primi: { title: 'Plats Savoureux', subtitle: 'Poulet & Salades' },
+        antipasti: { title: '', subtitle: 'Spécialités' },
+        primi: { title: '', subtitle: 'Poulet & Salades' },
         secondi: { title: 'Spécialités Marocaines', subtitle: 'Couscous & Tajines' },
         dolci: { title: 'Burgers', subtitle: 'Tous servis avec frites' },
         kebabs: { title: 'Kebabs', subtitle: 'Maison avec frites' },
